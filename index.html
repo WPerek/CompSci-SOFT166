@@ -8,8 +8,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+            crossorigin=""></script>
     <style>
         body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+        #mapid { height : 180px; }
     </style>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -56,8 +63,30 @@
         </div>
     </header>
     <div class="w3-row-padding">
+        <div class="container-fluid col-md-6 offset-md-3">
+            <div class="card mt-3 col-md-4">
+                <h2>My favourite Place</h2>
+                <p>This is one of my favourite places</p>
+            </div>
+            <div class="d-flex mt-3 col-md-6">
+                <div id="mapid" style="width: 600px; height: 400px;"></div>
+                <script>
+                    var mymap = L.map('mapid').setView([50.67102, 19.114881], 13)
+                    var marker = L.marker([51.5, -0.09]).addTo(mymap);
 
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1Ijoid3BlcmVrIiwiYSI6ImNrMnl4N3g1ZzBidGIzbmt0aWx4NWtqbGoifQ.HtkkbcvYmooSiFKbYp-sNw'
+                    }).addTo(mymap);
+
+                </script>
+            </div>
     </div>
+    </div>
+
+
 
     <!-- Contact Section -->
     <div class="w3-container w3-padding-large w3-sand ">
